@@ -50,5 +50,52 @@ namespace Rekrutacja.Helpers
                     throw new Exception("Nie wybrano typu figury");
             }
         }
+
+        public static int ParseForIntValue(this string value)
+        {
+            int result = 0;
+            if (string.IsNullOrEmpty(value))
+                return result;
+            int numberOfDigits = value.Length;
+            for (int i = numberOfDigits - 1; i >= 0; i--)
+            {
+                int currentUniCode = value[i];
+                switch (currentUniCode)
+                {
+                    case 48:
+                        break;
+                    case 49:
+                        result += (int)Math.Pow(10, (numberOfDigits - i - 1));
+                        break;
+                    case 50:
+                        result += 2 * (int)Math.Pow(10, (numberOfDigits - i - 1));
+                        break;
+                    case 51:
+                        result += 3 * (int)Math.Pow(10, (numberOfDigits - i - 1));
+                        break;
+                    case 52:
+                        result += 4 * (int)Math.Pow(10, (numberOfDigits - i - 1));
+                        break;
+                    case 53:
+                        result += 5 * (int)Math.Pow(10, (numberOfDigits - i - 1));
+                        break;
+                    case 54:
+                        result += 6 * (int)Math.Pow(10, (numberOfDigits - i - 1));
+                        break;
+                    case 55:
+                        result += 7 * (int)Math.Pow(10, (numberOfDigits - i - 1));
+                        break;
+                    case 56:
+                        result += 8 * (int)Math.Pow(10, (numberOfDigits - i - 1));
+                        break;
+                    case 57:
+                        result += 9 * (int)Math.Pow(10, (numberOfDigits - i - 1));
+                        break;
+                    default:
+                        throw new Exception("Wprowadzona liczba ma zły format");
+                }
+            }
+            return result;
+        }
     }
 }

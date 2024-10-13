@@ -19,9 +19,9 @@ namespace Rekrutacja.Workers.Template
         public class FieldTemplateWorkerParametry : ContextBase
         {
             [Caption("A")]
-            public double A { get; set; }
+            public string A { get; set; }
             [Caption("B")]
-            public double B { get; set; }
+            public string B { get; set; }
             [Caption("Data obliczeń")]
             public Date DataObliczen { get; set; }
             [Caption("Typ figury")]
@@ -53,7 +53,7 @@ namespace Rekrutacja.Workers.Template
                 using (ITransaction trans = nowaSesja.Logout(true))
                 {
                     var dataObliczen = this.Parametry.DataObliczen;
-                    var wynik = ActionHelper.ObliczPole(this.Parametry.A, this.Parametry.B, this.Parametry.TypFigury);
+                    var wynik = ActionHelper.ObliczPole(this.Parametry.A.ParseForIntValue(), this.Parametry.B.ParseForIntValue(), this.Parametry.TypFigury);
                     foreach (var p in pracowniks)
                     {
                         var pracownikZSesja = nowaSesja.Get(p);
